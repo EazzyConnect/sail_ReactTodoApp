@@ -7,7 +7,7 @@ const MyTodo = () => {
 
    <div>
 
-    <h1>Todo List</h1>
+    <h1>Todo App</h1>
     <Input label="Todo" placeholder="Enter your todo" />
 
    </div>

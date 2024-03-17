@@ -1,4 +1,5 @@
 import { useState } from "react";
+import './InputOutput.css'
 
 
 export const Input = (props) => {
@@ -12,46 +13,56 @@ export const Input = (props) => {
  };
 
  const addTodo = () => {
-  if (inputValue.trim() !== '') {
-   setTodos([...todos, inputValue]);
+  if (inputValue !== "") {
+   setTodos([...todos, inputValue.trim()]);
    setInputValue('');
   }
  };
 
  const editTodo = (index) => {
-  const newTodo = prompt("Edit todo:");
-  if (newTodo !== "" && newTodo !== null) {
-   const updatedTodo = [...todos];
-   updatedTodo[index] = newTodo.trim();
-   setTodos(updatedTodo)
+  const editTodoAlert = confirm("Do you want to edit this todo?");
+  if (editTodoAlert) {
+   const newTodo = prompt("Edit todo:");
+   if (newTodo !== "" && newTodo !== null) {
+    const updatedTodo = [...todos];
+    updatedTodo[index] = newTodo.trim();
+    setTodos(updatedTodo)
+   }
   }
  }
 
  const deleteTodo = (index) => {
-  const newTodos = [...todos];
-  newTodos.splice(index, 1);
-  setTodos(newTodos);
+  const deleteAlert = confirm("Are you sure?");
+  if (deleteAlert) {
+   const newTodos = [...todos];
+   newTodos.splice(index, 1);
+   setTodos(newTodos);
+  }
  };
 
  return (
   <>
-   <div>
+   <div id="inputTag">
 
-    <label htmlFor={props.label}>{props.label}: </label>
-    <input type="text" id={props.label} value={inputValue} onChange={inputChange} placeholder={props.placeholder}
-    />
-    <button onClick={addTodo}>Add</button>
+    <div className="inputField">
+     <label htmlFor={props.label}>{props.label}: </label>
+     <input type="text" id={props.label} value={inputValue} onChange={inputChange} placeholder={props.placeholder}
+     />
+    </div>
+
+    <button id="addBtn" onClick={addTodo}>Add</button>
 
    </div>
 
-   <div>
-
+   <div id="outputTag">
+    <h3>My Todo List</h3>
     <ol>
      {todos.map((todo, index) => (
-      <li key={index}>
+      <li id="todoLi" key={index}>
        {todo}
-       <button onClick={() => editTodo(index)}>Edit</button>
-       <button onClick={() => deleteTodo(index)}>Delete</button>
+       <br />
+       <button className="todoFnBtn firstBtn" onClick={() => editTodo(index)}>Edit</button>
+       <button className="todoFnBtn" onClick={() => deleteTodo(index)}>Delete</button>
       </li>
      ))}
     </ol>
