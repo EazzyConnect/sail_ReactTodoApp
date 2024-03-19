@@ -18,7 +18,7 @@ export const Input = (props) => {
 
  const addTodo = () => {
   const input = sentenceCase(inputValue);
-  if (input !== "" && input.length > 5 && input.length < 21) {
+  if (input !== "" && input.length > 5 && input.length < 31) {
    setTodos([...todos, input]);
    setInputValue('');
   } else {
@@ -30,8 +30,9 @@ export const Input = (props) => {
  const editTodo = (index) => {
   const editTodoAlert = confirm("Do you want to edit this todo?");
   if (editTodoAlert) {
-   const newTodo = sentenceCase(prompt("Edit todo:"));
-   if (newTodo !== "" && newTodo !== null && newTodo !== "" && newTodo.length > 5 && newTodo.length < 21) {
+   const promptText = prompt("Edit todo:")
+   const newTodo = sentenceCase(promptText);
+   if (newTodo !== "" && newTodo !== null && newTodo !== "" && newTodo.length > 5 && newTodo.length < 31) {
     const updatedTodo = [...todos];
     updatedTodo[index] = newTodo;
     setTodos(updatedTodo);
@@ -61,35 +62,39 @@ export const Input = (props) => {
 
  return (
   <>
-   <div id="inputTag">
 
-    <div className="inputField">
-     <label htmlFor={props.label}>{props.label}: </label>
-     <input type="text" id={props.label} value={inputValue} onChange={inputChange} placeholder={props.placeholder}
-     />
-     <br />
-     <TextLength length={inputValue.length} />
+   <div className="container">
+
+    <div id="inputTag">
+
+     <div className="inputField">
+      <label htmlFor={props.label}>{props.label}: </label>
+      <input type="text" id={props.label} value={inputValue} onChange={inputChange} placeholder={props.placeholder}
+      />
+      <br /> <br />
+      <TextLength length={inputValue.length} />
+     </div>
+
+     <button id="addBtn" onClick={addTodo}>Add</button>
+
     </div>
 
-    <button id="addBtn" onClick={addTodo}>Add</button>
+    <div id="outputTag">
+     <h2>My Todo List</h2>
+     <ol>
+      {todos.map((todo, index) => (
+       <li id="todoLi" key={index}>
+        {todo}
+        <br />
+        <button className="todoFnBtn firstBtn" onClick={() => editTodo(index)}>Edit</button>
+        <button className="todoFnBtn" onClick={() => deleteTodo(index)}>Delete</button>
+       </li>
+      ))}
+     </ol>
+
+    </div>
 
    </div>
-
-   <div id="outputTag">
-    <h3>My Todo List</h3>
-    <ol>
-     {todos.map((todo, index) => (
-      <li id="todoLi" key={index}>
-       {todo}
-       <br />
-       <button className="todoFnBtn firstBtn" onClick={() => editTodo(index)}>Edit</button>
-       <button className="todoFnBtn" onClick={() => deleteTodo(index)}>Delete</button>
-      </li>
-     ))}
-    </ol>
-
-   </div>
-
   </>
  )
 }
