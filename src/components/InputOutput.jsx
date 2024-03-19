@@ -1,5 +1,6 @@
 import { useState } from "react";
-import './InputOutput.css'
+import './InputOutput.css';
+import TextLength from "./TextLength";
 
 
 export const Input = (props) => {
@@ -13,9 +14,11 @@ export const Input = (props) => {
  };
 
  const addTodo = () => {
-  if (inputValue !== "") {
+  if (inputValue !== "" && inputValue.length > 5 && inputValue.length < 21) {
    setTodos([...todos, inputValue.trim()]);
    setInputValue('');
+  } else {
+   return alert("Can not add your todo, because text length is either too short or too long.");
   }
  };
 
@@ -26,7 +29,7 @@ export const Input = (props) => {
    if (newTodo !== "" && newTodo !== null) {
     const updatedTodo = [...todos];
     updatedTodo[index] = newTodo.trim();
-    setTodos(updatedTodo)
+    setTodos(updatedTodo);
    }
   }
  }
@@ -48,6 +51,8 @@ export const Input = (props) => {
      <label htmlFor={props.label}>{props.label}: </label>
      <input type="text" id={props.label} value={inputValue} onChange={inputChange} placeholder={props.placeholder}
      />
+     <br />
+     <TextLength length={inputValue.length} />
     </div>
 
     <button id="addBtn" onClick={addTodo}>Add</button>

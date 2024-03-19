@@ -2,7 +2,7 @@ import './App.css'
 import MyTodo from './components/MyTodo'
 // import SetCounter from './components/SetCount'
 
-function App() {
+const App = () => {
 
   return (
     <>
@@ -23,4 +23,4 @@ function App() {
   )
 }
 
-export default App
+export default App;

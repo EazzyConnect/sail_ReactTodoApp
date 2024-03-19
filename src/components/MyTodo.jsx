@@ -14,6 +14,6 @@ const MyTodo = () => {
 
   </>
  );
-}
+};
 
 export default MyTodo;
