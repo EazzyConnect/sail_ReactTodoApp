@@ -16,7 +16,7 @@
 }
 
 #addBtn {
- width: 10%;
+ width: 15%;
  margin: 10px 0;
  padding: 5px;
  cursor: pointer;
@@ -64,4 +64,31 @@ ol {
 label {
  font-weight: bold;
  font-size: large;
+ color: black;
+}
+
+input {
+ width: 80%;
+}
+
+.inputField {
+ width: 90%;
+}
+
+@media only screen and (max-width: 750px) {
+ .container {
+  width: 80%;
+ }
+
+ #addBtn {
+  width: 30%;
+ }
+
+ input {
+  width: 100%;
+ }
+
+ .inputField {
+  width: 100%;
+ }
 }
