@@ -10,16 +10,8 @@ const TextLength = (props) => {
  } else if (props.length > 30) {
   return `Input length: ${props.length} (Text too long)`;
  } else {
-  return `Input length: ${props.length}`;
+  return `Input length: ${props.length} (OK)`;
  };
-
- // return (
- //  <>
- //   <div>
- //    <h6>Input length: {props.length}</h6>
- //   </div>
- //  </>
- // )
-}
+};
 
 export default TextLength;
