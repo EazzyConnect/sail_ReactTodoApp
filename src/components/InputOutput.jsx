@@ -30,7 +30,10 @@ export const Input = (props) => {
  const editTodo = (index) => {
   const editTodoAlert = confirm("Do you want to edit this todo?");
   if (editTodoAlert) {
-   const promptText = prompt("Edit todo:")
+   const promptText = prompt(`Edit todo: ${todos[index]}`)
+   if (!promptText) {
+    return ""
+   }
    const newTodo = sentenceCase(promptText);
    if (newTodo !== "" && newTodo !== null && newTodo !== "" && newTodo.length > 5 && newTodo.length < 31) {
     const updatedTodo = [...todos];
